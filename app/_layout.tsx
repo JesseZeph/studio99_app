@@ -1,59 +1,85 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import 'react-native-reanimated';
-
-import { useColorScheme } from '@/components/useColorScheme';
+import './globals.css';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { StatusBar } from 'expo-status-bar';
+import AnimatedSplash from '@/components/AnimatedSplash';
 
 export {
-  // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from 'expo-router';
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+const InitialLayout = () => {
+  const router = useRouter();
   const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require('../assets/fonts/LeagueSpartan-Regular.ttf'),
     ...FontAwesome.font,
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
+  const [isAppReady, setIsAppReady] = useState(false);
+  const [isSplashAnimationComplete, setIsSplashAnimationComplete] = useState(false);
+
   useEffect(() => {
     if (error) throw error;
   }, [error]);
 
-  useEffect(() => {
+  const onLayoutRootView = useCallback(async () => {
     if (loaded) {
-      SplashScreen.hideAsync();
+      setIsAppReady(true);
     }
   }, [loaded]);
 
-  if (!loaded) {
+  useEffect(() => {
+    if (loaded) {
+      onLayoutRootView();
+    }
+  }, [loaded, onLayoutRootView]);
+
+  const handleAnimationComplete = () => {
+    setIsSplashAnimationComplete(true);
+    setTimeout(() => {
+      router.replace('/onboarding/onboard');
+    }, 1000);
+  };
+
+  if (!loaded || !isAppReady) {
     return null;
   }
 
-  return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
+  if (!isSplashAnimationComplete) {
+    return (
+      <AnimatedSplash
+        onReady={() => {
+          SplashScreen.hideAsync();
+        }}
+        onAnimationComplete={handleAnimationComplete}
+      />
+    );
+  }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <>
+      <StatusBar hidden />
       <Stack>
+        <Stack.Screen name="onboarding/onboard" options={{ headerShown: false, animation: 'none' }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
-    </ThemeProvider>
+    </>
+  )
+}
+
+const RootLayoutNav = () => {
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <InitialLayout />
+    </GestureHandlerRootView>
   );
 }
+
+export default RootLayoutNav;
