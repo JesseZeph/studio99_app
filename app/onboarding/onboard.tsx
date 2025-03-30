@@ -1,12 +1,12 @@
 import { FlatList, StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native'
 import React, { useRef, useState } from 'react'
-import { defaultStyles } from '@/constants/Styles'
 import Paginator from '@/components/Paginator'
-import Page1 from '@/components/First'
-import Page2 from '@/components/Second'
-import Page3 from '@/components/Third'
+import Page1 from '@/components/FirstSlide'
+import Page2 from '@/components/SecondSlide'
+import Page3 from '@/components/ThirdSlide'
 import Colors from '@/constants/Colors'
 import { screen } from '@/constants/Responsive'
+import { applyFont } from '@/constants/Fonts'
 const { width } = Dimensions.get('window');
 
 const Onboarding = () => {
@@ -34,9 +34,9 @@ const Onboarding = () => {
             <FlatList
                 ref={flatListRef}
                 data={data}
-                renderItem={({ item: Component }) => (
+                renderItem={({ item: Component, index }) => (
                     <View style={{ width }}>
-                        <Component />
+                        <Component currentIndex={currentIndex === index ? currentIndex : -1} />
                     </View>
                 )}
                 horizontal
@@ -54,7 +54,7 @@ const Onboarding = () => {
             <View style={styles.bottomContainer}>
                 <Paginator data={data} currentIndex={currentIndex} />
                 <TouchableOpacity onPress={handleNext} style={styles.buttonContainer}>
-                    <Text style={styles.textButton}>Next</Text>
+                    <Text style={applyFont(styles.textButton)}>Next</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     textButton: {
         color: Colors.navy,
         fontSize: screen.wp(5),
-        fontWeight: '600',
+        fontWeight: 600,
         overflow: 'hidden',
         alignSelf: 'flex-end'
     }

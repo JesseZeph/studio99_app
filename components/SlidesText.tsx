@@ -2,26 +2,23 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { screen } from '@/constants/Responsive';
-interface OnboardingTextProps {
+import { applyFont } from '@/constants/Fonts';
+
+interface SlidesTextProps {
     title: string;
     subtitle: string;
 }
 
-const OnboardingText = ({ title, subtitle }: OnboardingTextProps) => {
+const SlidesText = ({ title, subtitle }: SlidesTextProps) => {
     return (
         <View>
-
             <Text
-                style={[
-                    styles.title
-                ]}
+                style={applyFont(styles.title)}
             >
                 {title}
             </Text>
             <Text
-                style={[
-                    styles.subtitle,
-                ]}
+                style={applyFont(styles.subtitle)}
             >
                 {subtitle}
             </Text>
@@ -29,10 +26,9 @@ const OnboardingText = ({ title, subtitle }: OnboardingTextProps) => {
     )
 }
 
-export default OnboardingText
+export default SlidesText
 
 const styles = StyleSheet.create({
-
     title: {
         fontSize: screen.wp(6),
         fontWeight: 'bold',
@@ -44,5 +40,7 @@ const styles = StyleSheet.create({
         fontSize: screen.wp(4),
         color: '#929292',
         textAlign: 'center',
+        lineHeight: screen.hp(2),
+        paddingHorizontal: screen.wp(3),
     }
 })

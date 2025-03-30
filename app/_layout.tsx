@@ -18,7 +18,7 @@ SplashScreen.preventAutoHideAsync();
 const InitialLayout = () => {
   const router = useRouter();
   const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/LeagueSpartan-Regular.ttf'),
+    'LeagueSpartan': require('../assets/fonts/LeagueSpartan-Regular.ttf'),
     ...FontAwesome.font,
   });
 
@@ -26,11 +26,15 @@ const InitialLayout = () => {
   const [isSplashAnimationComplete, setIsSplashAnimationComplete] = useState(false);
 
   useEffect(() => {
-    if (error) throw error;
+    if (error) {
+      console.error("Font loading error:", error);
+      throw error;
+    }
   }, [error]);
 
   const onLayoutRootView = useCallback(async () => {
     if (loaded) {
+      console.log("Fonts loaded successfully");
       setIsAppReady(true);
     }
   }, [loaded]);

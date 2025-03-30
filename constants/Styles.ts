@@ -1,14 +1,16 @@
 import { StyleSheet } from 'react-native';
 import Colors from '@/constants/Colors';
+import { applyFont } from './Fonts';
 
-export const defaultStyles = StyleSheet.create({
+// Base styles without fonts applied
+const baseStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
     marginHorizontal: 16,
-    marginVertical:20
+    marginVertical: 20
   },
-  header: {
+  headerBase: {
     fontSize: 22,
     fontWeight: '500',
   },
@@ -19,17 +21,17 @@ export const defaultStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textLink: {
+  textLinkBase: {
     color: Colors.primary,
     fontSize: 18,
     fontWeight: '500',
   },
-  descriptionText: {
+  descriptionTextBase: {
     fontSize: 18,
     marginTop: 20,
     color: Colors.gray,
   },
-  buttonText: {
+  buttonTextBase: {
     color: '#fff',
     fontSize: 18,
     fontWeight: '500',
@@ -41,12 +43,12 @@ export const defaultStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonTextSmall: {
+  buttonTextSmallBase: {
     color: '#fff',
     fontSize: 16,
     fontWeight: '500',
   },
-  sectionHeader: {
+  sectionHeaderBase: {
     fontSize: 20,
     fontWeight: 'bold',
     margin: 20,
@@ -60,3 +62,13 @@ export const defaultStyles = StyleSheet.create({
     gap: 20,
   },
 });
+
+export const defaultStyles = {
+  ...baseStyles,
+  header: applyFont(baseStyles.headerBase),
+  textLink: applyFont(baseStyles.textLinkBase),
+  descriptionText: applyFont(baseStyles.descriptionTextBase),
+  buttonText: applyFont(baseStyles.buttonTextBase),
+  buttonTextSmall: applyFont(baseStyles.buttonTextSmallBase),
+  sectionHeader: applyFont(baseStyles.sectionHeaderBase),
+};

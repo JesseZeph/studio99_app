@@ -8,6 +8,7 @@ export default {
   lightPrimary: '#A3ACBB',
   background: '#F5F5F5',
   lightBlue: '#3F72CE',
-  navy: '#063A98'
+  navy: '#063A98',
+  blue700: '#E7EDF9'
 
 }

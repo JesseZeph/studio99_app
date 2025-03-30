@@ -4,6 +4,9 @@ module.exports = {
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
+      fontFamily: {
+        league: ['LeagueSpartan'],
+      },
       colors: {
         primary: '#0B193E',
         light: {

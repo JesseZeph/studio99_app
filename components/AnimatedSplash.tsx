@@ -1,4 +1,4 @@
-import { images } from '@/constants/images';
+import { Images } from '@/constants/Images';
 import React, { useEffect, useRef } from 'react';
 import { View, StyleSheet, Image, Dimensions, Animated } from 'react-native';
 
@@ -60,7 +60,7 @@ const AnimatedSplash: React.FC<AnimatedSplashProps> = ({ onAnimationComplete, on
     return (
         <View style={styles.container}>
             <Animated.Image
-                source={images.logo}
+                source={Images.logo}
                 style={[
                     styles.logo,
                     {

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Animated } from 'react-native'
 import React from 'react'
 import Colors from '@/constants/Colors';
-
+import { screen } from '@/constants/Responsive';
 interface PaginatorProps {
     data: any[];
     currentIndex: number;
@@ -9,7 +9,7 @@ interface PaginatorProps {
 
 const Paginator = ({ data, currentIndex }: PaginatorProps) => {
     return (
-        <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 8, marginBottom: 20 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 8, marginBottom: screen.hp(4) }}>
             {data.map((_, i) => {
                 return (
                     <View
