@@ -10,6 +10,9 @@ import camEllipse from '@/assets/images/ellipse-1.png';
 import ellipse from '@/assets/images/ellipse-2.png';
 import plusEmoji from '@/assets/images/plus-emoji.png';
 import dottedBorder from '@/assets/images/dotted.png';
+import student from '@/assets/images/education.png';
+import teacher from '@/assets/images/teacher.png';
+import video from '@/assets/images/video-marketing.png';
 
 
 export const Images = {
@@ -24,5 +27,8 @@ export const Images = {
     camEllipse,
     ellipse,
     plusEmoji,
-    dottedBorder
+    dottedBorder,
+    student,
+    teacher,
+    video
 }

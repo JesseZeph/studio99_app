@@ -1,4 +1,4 @@
-import { Animated, Easing, StyleSheet, Text, View, Image } from 'react-native'
+import { Animated, Easing, StyleSheet, View } from 'react-native'
 import React, { useRef, useEffect } from 'react'
 import { screen } from '@/constants/Responsive';
 import SlidesText from './SlidesText';
@@ -8,6 +8,7 @@ import Colors from '@/constants/Colors';
 const Page = ({ currentIndex }: { currentIndex: number }) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
     const slideAnim = useRef(new Animated.Value(-100)).current;
+    const textSlideAnim = useRef(new Animated.Value(50)).current;
     const rotateAnim = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
@@ -15,7 +16,7 @@ const Page = ({ currentIndex }: { currentIndex: number }) => {
             fadeAnim.setValue(0);
             slideAnim.setValue(-100);
             rotateAnim.setValue(0);
-
+            textSlideAnim.setValue(50);
             Animated.parallel([
                 Animated.timing(fadeAnim, {
                     toValue: 1,
@@ -24,6 +25,12 @@ const Page = ({ currentIndex }: { currentIndex: number }) => {
                     easing: Easing.inOut(Easing.ease),
                 }),
                 Animated.timing(slideAnim, {
+                    toValue: 0,
+                    duration: 1000,
+                    useNativeDriver: true,
+                    easing: Easing.inOut(Easing.ease),
+                }),
+                Animated.timing(textSlideAnim, {
                     toValue: 0,
                     duration: 1000,
                     useNativeDriver: true,
@@ -76,7 +83,7 @@ const Page = ({ currentIndex }: { currentIndex: number }) => {
                     </View>
                 </View>
             </View>
-            <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY: slideAnim }] }}>
+            <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY: textSlideAnim }] }}>
                 <SlidesText title='Where Learning Meets Fun' subtitle='We provide an opportunity for you to learn and also have fun watching stuff you love right on the same platform.' />
             </Animated.View>
         </View>
@@ -95,19 +102,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         width: '100%',
         paddingHorizontal: screen.wp(10),
-        justifyContent: 'space-between',
-        height: '70%',
-        marginTop: screen.hp(6),
     },
     topImageContainer: {
-        width: '100%',
         alignItems: 'flex-end',
-        marginBottom: -screen.hp(6),
     },
     bottomImageContainer: {
-        width: '100%',
         alignItems: 'flex-start',
-        marginTop: -screen.hp(6),
     },
     image: {
         width: screen.wp(30),

@@ -1,17 +1,17 @@
 import { StyleSheet } from 'react-native';
 import Colors from '@/constants/Colors';
 import { applyFont } from './Fonts';
-
+import { screen } from './Responsive';
 // Base styles without fonts applied
 const baseStyles = StyleSheet.create({
   container: {
-    flex: 1,
+     flex: 1,
     backgroundColor: Colors.background,
-    marginHorizontal: 16,
-    marginVertical: 20
+    marginHorizontal: screen.wp(6),
+    paddingBottom: screen.hp(4)
   },
   headerBase: {
-    fontSize: 22,
+    fontSize: screen.wp(5),
     fontWeight: '500',
   },
   pillButton: {
@@ -27,17 +27,15 @@ const baseStyles = StyleSheet.create({
     fontWeight: '500',
   },
   descriptionTextBase: {
-    fontSize: 18,
-    marginTop: 20,
-    color: Colors.gray,
+    fontSize: screen.wp(4),
+    marginTop: screen.hp(1),
+    color: Colors.lightGray,
   },
   buttonTextBase: {
-    color: '#fff',
-    fontSize: 18,
+    fontSize: screen.wp(4),
     fontWeight: '500',
   },
   pillButtonSmall: {
-    paddingHorizontal: 20,
     height: 40,
     borderRadius: 20,
     justifyContent: 'center',

@@ -9,6 +9,8 @@ export default {
   background: '#F5F5F5',
   lightBlue: '#3F72CE',
   navy: '#063A98',
-  blue700: '#E7EDF9'
+  blue700: '#E7EDF9',
+  lightGray: '#929292',
+  buttonColor: '#083079'
 
 }

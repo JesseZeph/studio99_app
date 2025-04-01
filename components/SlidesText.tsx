@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         fontSize: screen.wp(4),
         color: '#929292',
         textAlign: 'center',
-        lineHeight: screen.hp(2),
+        lineHeight: screen.hp(3),
         paddingHorizontal: screen.wp(3),
     }
 })

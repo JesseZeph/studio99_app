@@ -51,7 +51,7 @@ const Page = ({ currentIndex }: { currentIndex: number }) => {
                 <Image source={Images.books} style={[styles.miniImages, { position: 'absolute', left: screen.wp(25), top: screen.hp(42) }]} />
             </View>
 
-            <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY: slideAnim }] }}>
+            <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY: slideAnim }], marginTop: screen.hp(3) }}>
                 <SlidesText title='Learn Anytime, Anywhere' subtitle='Access course materials, upload lectures, and stay connected, all from the comfort of your home.' />
             </Animated.View>
         </View>

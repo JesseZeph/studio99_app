@@ -70,9 +70,11 @@ const InitialLayout = () => {
   return (
     <>
       <StatusBar hidden />
-      <Stack>
-        <Stack.Screen name="onboarding/onboard" options={{ headerShown: false, animation: 'none' }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="onboarding/onboard" options={{ animation: 'none' }} />
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="auth" />
+        <Stack.Screen name="(authenticated)/usertype" />
       </Stack>
     </>
   )

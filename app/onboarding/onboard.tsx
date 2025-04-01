@@ -7,12 +7,14 @@ import Page3 from '@/components/ThirdSlide'
 import Colors from '@/constants/Colors'
 import { screen } from '@/constants/Responsive'
 import { applyFont } from '@/constants/Fonts'
+import { useRouter } from 'expo-router'
 const { width } = Dimensions.get('window');
 
 const Onboarding = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const scrollX = useRef(0);
     const flatListRef = useRef<FlatList | null>(null);
+    const router = useRouter();
 
     const data = [
         Page1,
@@ -26,11 +28,14 @@ const Onboarding = () => {
                 index: currentIndex + 1,
                 animated: true
             });
+        } else {
+            router.replace('/auth');
         }
+
     };
 
     return (
-        <View style={styles.container}>
+        <View>
             <FlatList
                 ref={flatListRef}
                 data={data}
@@ -51,9 +56,12 @@ const Onboarding = () => {
                 }}
                 scrollEventThrottle={16}
             />
-            <View style={styles.bottomContainer}>
+            <View style={{ marginTop: screen.hp(3) }}>
                 <Paginator data={data} currentIndex={currentIndex} />
-                <TouchableOpacity onPress={handleNext} style={styles.buttonContainer}>
+            </View>
+
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity onPress={handleNext}>
                     <Text style={applyFont(styles.textButton)}>Next</Text>
                 </TouchableOpacity>
             </View>
@@ -64,16 +72,9 @@ const Onboarding = () => {
 export default Onboarding
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Colors.background,
-    },
-    bottomContainer: {
-        paddingBottom: screen.hp(10),
-        paddingHorizontal: screen.wp(5),
-    },
+
     buttonContainer: {
-        marginTop: screen.hp(3),
+        paddingHorizontal: screen.wp(5),
     },
     textButton: {
         color: Colors.navy,
