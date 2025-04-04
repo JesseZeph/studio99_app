@@ -6,7 +6,6 @@ import { screen } from './Responsive';
 const baseStyles = StyleSheet.create({
   container: {
      flex: 1,
-    backgroundColor: Colors.background,
     marginHorizontal: screen.wp(6),
     paddingBottom: screen.hp(4)
   },
@@ -30,7 +29,14 @@ const baseStyles = StyleSheet.create({
     fontSize: screen.wp(4),
     marginTop: screen.hp(1),
     color: Colors.lightGray,
+    lineHeight: screen.wp(5),
   },
+
+  textBase: {
+    fontSize: screen.wp(3.7),
+    lineHeight: screen.wp(5),
+  },
+
   buttonTextBase: {
     fontSize: screen.wp(4),
     fontWeight: '500',
@@ -65,6 +71,7 @@ export const defaultStyles = {
   ...baseStyles,
   header: applyFont(baseStyles.headerBase),
   textLink: applyFont(baseStyles.textLinkBase),
+  text: applyFont(baseStyles.textBase),
   descriptionText: applyFont(baseStyles.descriptionTextBase),
   buttonText: applyFont(baseStyles.buttonTextBase),
   buttonTextSmall: applyFont(baseStyles.buttonTextSmallBase),

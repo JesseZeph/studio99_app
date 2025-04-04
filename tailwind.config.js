@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       fontFamily: {
         league: ['LeagueSpartan'],
+        lemon: ['Lemon'],
       },
       colors: {
         primary: '#0B193E',

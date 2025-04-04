@@ -18,10 +18,10 @@ const LecturerLayout = () => {
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
                     headerTransparent: true,
-                    headerStyle: {
-                        backgroundColor: Colors.background,
+                    // headerStyle: {
+                    //     backgroundColor: Colors.background,
 
-                    },
+                    // },
                     headerLeft: () => (
                         <TouchableOpacity onPress={router.back}>
                             <Ionicons name='arrow-back' size={screen.wp(6)} color={Colors.primaryText} />

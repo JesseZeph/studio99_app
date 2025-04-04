@@ -41,9 +41,11 @@ interface CustomInputProps extends Omit<TextInputProps, 'style'> {
     error?: string;
     textContentType?: TextContentType;
     label?: string;
+    multiline?: boolean;
+    numberOfLines?: number;
 }
 
-const CustomInput = ({ containerStyle, placeholder, onChangeText, label, error, ...props }: CustomInputProps) => {
+const CustomInput = ({ containerStyle, placeholder, onChangeText, label, error, multiline = false, numberOfLines = 3, ...props }: CustomInputProps) => {
     const [text, setText] = useState('');
 
     const handleTextChange = (text: string) => {
@@ -56,17 +58,28 @@ const CustomInput = ({ containerStyle, placeholder, onChangeText, label, error, 
     return (
         <View style={containerStyle}>
             <Text style={applyFont(styles.label)}>{label}</Text>
-            <View style={[styles.innerContainer, error && { borderColor: 'red' }]}>
-                <View style={styles.inputContainer}>
+            <View style={[
+                styles.innerContainer,
+                error && { borderColor: 'red' },
+                multiline && styles.multilineContainer
+            ]}>
+                <View style={[
+                    styles.inputContainer,
+                    multiline && { alignItems: 'flex-start' }
+                ]}>
                     <TextInput
                         {...props}
-                        style={applyFont(styles.input)}
+                        style={[
+                            applyFont(styles.input),
+                            multiline && styles.multilineInput
+                        ]}
                         onChangeText={handleTextChange}
                         value={text}
                         placeholder={placeholder}
                         placeholderTextColor="#888"
-                        textAlignVertical="center"
                         textContentType={props.textContentType}
+                        multiline={multiline}
+                        numberOfLines={multiline ? numberOfLines : undefined}
                     />
                 </View>
             </View>
@@ -78,9 +91,13 @@ const CustomInput = ({ containerStyle, placeholder, onChangeText, label, error, 
 const styles = StyleSheet.create({
     innerContainer: {
         borderWidth: 1,
-        borderColor: Colors.lightGray,
+        borderColor: '#E2E5EA',
         borderRadius: 5,
         justifyContent: 'center',
+    },
+    multilineContainer: {
+        minHeight: 100,
+        justifyContent: 'flex-start',
     },
     inputContainer: {
         flexDirection: 'row',
@@ -92,6 +109,12 @@ const styles = StyleSheet.create({
         fontSize: screen.wp(3.5),
         height: 50,
         paddingHorizontal: 10,
+    },
+    multilineInput: {
+        height: 'auto',
+        paddingTop: 12,
+        paddingBottom: 12,
+        textAlignVertical: 'top',
     },
     errorText: {
         marginTop: 5,

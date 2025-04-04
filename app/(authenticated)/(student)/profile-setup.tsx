@@ -7,8 +7,9 @@ import { screen } from '@/constants/Responsive'
 import LogoHeader from '@/components/LogoHeader'
 import CustomInput from '@/components/CustomTextField'
 import CustomButton from '@/components/CustomButton'
-
+import { useHeaderHeight } from '@react-navigation/elements'
 const ProfileSetup = () => {
+    const headerHeight = useHeaderHeight();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -20,13 +21,19 @@ const ProfileSetup = () => {
 
     const handleChange = (text: string, field: string) => {
         setFirstName(text);
-        if (errors.firstName) {
+        setLastName(text);
+        setEmail(text);
+        setUniversity(text);
+        setDepartment(text);
+        setCourse(text);
+        setLevel(text);
+        if (errors) {
             setErrors(prev => ({ ...prev, firstName: '', lastName: '', email: '', university: '', department: '', course: '', level: '' }));
         }
     };
 
     return (
-        <SafeAreaView style={defaultStyles.container}>
+        <View style={[defaultStyles.container, { marginTop: headerHeight }]}>
             <ScrollView showsVerticalScrollIndicator={false} automaticallyAdjustKeyboardInsets={true} style={{ marginBottom: screen.hp(5) }}>
                 <LogoHeader title="Complete Your Student Profile" subtitle="Help us personalize your learning experience" />
 
@@ -82,7 +89,7 @@ const ProfileSetup = () => {
                 />
             </ScrollView>
             <CustomButton text="Next" onPress={() => { }} loading={false} />
-        </SafeAreaView>
+        </View>
     )
 }
 

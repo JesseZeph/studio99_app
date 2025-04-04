@@ -13,6 +13,9 @@ import dottedBorder from '@/assets/images/dotted.png';
 import student from '@/assets/images/education.png';
 import teacher from '@/assets/images/teacher.png';
 import video from '@/assets/images/video-marketing.png';
+import kids from '@/assets/images/kids.png';
+import videoIcon from '@/assets/images/video-plus.png';
+import studioMascot from '@/assets/images/studio-mascot.png';
 
 
 export const Images = {
@@ -30,5 +33,8 @@ export const Images = {
     dottedBorder,
     student,
     teacher,
-    video
+    video,
+    kids,
+    videoIcon,
+    studioMascot
 }

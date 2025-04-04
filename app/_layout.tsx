@@ -19,6 +19,7 @@ const InitialLayout = () => {
   const router = useRouter();
   const [loaded, error] = useFonts({
     'LeagueSpartan': require('../assets/fonts/LeagueSpartan-Regular.ttf'),
+    'Lemon': require('../assets/fonts/Lemon-Regular.ttf'),
     ...FontAwesome.font,
   });
 
@@ -69,7 +70,7 @@ const InitialLayout = () => {
 
   return (
     <>
-      <StatusBar hidden />
+      {/* <StatusBar hidden /> */}
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="onboarding/onboard" options={{ animation: 'none' }} />
         <Stack.Screen name="(tabs)" />

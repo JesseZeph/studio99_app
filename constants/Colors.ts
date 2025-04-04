@@ -11,6 +11,7 @@ export default {
   navy: '#063A98',
   blue700: '#E7EDF9',
   lightGray: '#929292',
-  buttonColor: '#083079'
+  buttonColor: '#083079',
+  lightText: '#707275',
 
 }

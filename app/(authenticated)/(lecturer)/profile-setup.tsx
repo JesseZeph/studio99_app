@@ -1,6 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { defaultStyles } from '@/constants/Styles'
 import { screen } from '@/constants/Responsive'
 import LogoHeader from '@/components/LogoHeader'
@@ -21,8 +20,13 @@ const ProfileSetup = () => {
 
     const handleChange = (text: string, field: string) => {
         setFirstName(text);
-        if (errors.firstName) {
-            setErrors(prev => ({ ...prev, firstName: '', lastName: '', email: '', university: '', department: '', course: '' }));
+        setLastName(text);
+        setEmail(text);
+        setUniversity(text);
+        setFaculty(text);
+        setCourse(text);
+        if (errors) {
+            setErrors(prev => ({ ...prev, firstName: '', lastName: '', email: '', university: '', faculty: '', course: '' }));
         }
     };
 
