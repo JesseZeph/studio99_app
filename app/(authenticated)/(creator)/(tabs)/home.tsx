@@ -55,6 +55,11 @@ const Home = () => {
 
     return (
         <View style={styles.container}>
+            <View style={styles.fixedTopNav}>
+                <Text style={applyFont(styles.navText)}>Now Streaming</Text>
+                <Text style={[applyFont(styles.navText), styles.active]}>Explore</Text>
+
+            </View>
             <FlatList
                 ref={flatListRef}
                 pagingEnabled
@@ -84,6 +89,29 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'black',
+    },
+    fixedTopNav: {
+        position: 'absolute',
+        top: screen.hp(7),
+        left: 0,
+        right: 0,
+        zIndex: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: screen.wp(5),
+    },
+    active: {
+        fontWeight: 'bold',
+        fontSize: screen.wp(4.5),
+    },
+    navText: {
+        color: 'white',
+        fontWeight: '400',
+        marginHorizontal: screen.wp(3),
+        fontSize: screen.wp(4),
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 3,
     },
     liveContainer: {
         flexDirection: 'row',

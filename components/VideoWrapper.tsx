@@ -36,42 +36,36 @@ const VideoWrapper = ({ item, index, currentIndex }: { item: any, index: number,
             <VideoView
                 player={player}
                 allowsFullscreen
-                allowsPictureInPicture
+                allowsPictureInPicture={false}
+                nativeControls={false}
                 style={[StyleSheet.absoluteFill]}
                 contentFit={item.metadata.orientation === 'landscape' ? 'contain' : 'cover'}
             />
 
-            <View style={styles.contentWrapper}>
-                <View style={styles.topNav}>
-                    <Text style={applyFont(styles.navText)}>Now Streaming</Text>
-                    <Text style={[applyFont(styles.navText), styles.active]}>Explore</Text>
-
+            <View style={styles.contentContainer}>
+                <View style={styles.leftContent}>
+                    <View style={styles.spacer} />
+                    <View style={styles.bottomInfo}>
+                        <Text style={[defaultStyles.header, styles.username]}>Aziz Adam</Text>
+                        <Text style={[defaultStyles.text, styles.description]}>How to get a seat in London Underground 😂😂😂</Text>
+                    </View>
                 </View>
-                <View style={styles.contentContainer}>
-                    <View style={styles.leftContent}>
-                        <View style={styles.spacer} />
-                        <View style={styles.bottomInfo}>
-                            <Text style={[defaultStyles.header, styles.username]}>Aziz Adam</Text>
-                            <Text style={[defaultStyles.text, styles.description]}>How to get a seat in London Underground 😂😂😂</Text>
-                        </View>
-                    </View>
 
-                    <View style={styles.rightContent}>
-                        <TouchableOpacity onPress={() => setLiked(!liked)} style={styles.actionButton}>
-                            <Ionicons name={liked ? "heart" : "heart"} size={30} color={liked ? "red" : "white"} />
-                            <Text style={applyFont(styles.actionText)}>80.3K</Text>
-                        </TouchableOpacity>
+                <View style={styles.rightContent}>
+                    <TouchableOpacity onPress={() => setLiked(!liked)} style={styles.actionButton}>
+                        <Ionicons name={liked ? "heart" : "heart"} size={30} color={liked ? "red" : "white"} />
+                        <Text style={applyFont(styles.actionText)}>80.3K</Text>
+                    </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.actionButton}>
-                            <Ionicons name="chatbubble" size={30} color="white" />
-                            <Text style={applyFont(styles.actionText)}>2,436</Text>
-                        </TouchableOpacity>
+                    <TouchableOpacity style={styles.actionButton}>
+                        <Ionicons name="chatbubble" size={30} color="white" />
+                        <Text style={applyFont(styles.actionText)}>2,436</Text>
+                    </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.actionButton}>
-                            <Ionicons name="paper-plane" size={30} color="white" />
-                            <Text style={applyFont(styles.actionText)}>2,670</Text>
-                        </TouchableOpacity>
-                    </View>
+                    <TouchableOpacity style={styles.actionButton}>
+                        <Ionicons name="paper-plane" size={30} color="white" />
+                        <Text style={applyFont(styles.actionText)}>2,670</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -85,33 +79,6 @@ const styles = StyleSheet.create({
     videoWrapperContainer: {
         width,
         position: 'relative',
-    },
-    contentWrapper: {
-        position: 'absolute',
-        top: Platform.OS === 'android' ? screen.hp(2) : screen.hp(7),
-        left: 0,
-        right: 0,
-        bottom: 0
-    },
-
-    topNav: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: screen.wp(5),
-        width: '100%',
-    },
-    navText: {
-        color: 'white',
-        fontWeight: '500',
-        marginHorizontal: screen.wp(2),
-        fontSize: screen.wp(4),
-        textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: { width: 1, height: 1 },
-        textShadowRadius: 3,
-    },
-    active: {
-        fontWeight: 'bold',
-        fontSize: screen.wp(4),
     },
     contentContainer: {
         flex: 1,
