@@ -9,9 +9,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import CustomInput from '@/components/CustomTextField';
 import CustomButton from '@/components/CustomButton';
-
+import { useRouter } from 'expo-router';
 const CreatorProfileSetup = () => {
     const headerHeight = useHeaderHeight();
+    const router = useRouter();
     const [image, setImage] = useState<string | null>(null);
     const [username, setUsername] = useState<string>('');
     const [displayName, setDisplayName] = useState<string>('');
@@ -84,7 +85,9 @@ const CreatorProfileSetup = () => {
                     numberOfLines={4}
                 />
             </View>
-            <CustomButton text="Save and continue" onPress={() => { }} loading={false} style={{ marginBottom: screen.hp(6) }} />
+            <CustomButton text="Save and continue" onPress={() => {
+                router.push('/(authenticated)/(creator)/(tabs)/home')
+            }} loading={false} style={{ marginBottom: screen.hp(6) }} />
 
         </ScrollView>
     )

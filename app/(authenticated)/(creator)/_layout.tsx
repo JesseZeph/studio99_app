@@ -78,6 +78,11 @@ const CreatorLayout = () => {
                 }}
             />
 
+            <Stack.Screen name='(tabs)' options={{
+                headerShown: false
+
+            }} />
+
         </Stack>
     )
 }

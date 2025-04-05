@@ -16,6 +16,8 @@ import video from '@/assets/images/video-marketing.png';
 import kids from '@/assets/images/kids.png';
 import videoIcon from '@/assets/images/video-plus.png';
 import studioMascot from '@/assets/images/studio-mascot.png';
+import uploadIcon from '@/assets/images/plus-fill.png';
+import goLive from '@/assets/images/live-icon.png';
 
 
 export const Images = {
@@ -36,5 +38,7 @@ export const Images = {
     video,
     kids,
     videoIcon,
-    studioMascot
+    studioMascot,
+    uploadIcon,
+    goLive
 }
